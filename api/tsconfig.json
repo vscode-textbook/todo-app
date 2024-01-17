@@ -1,0 +1,22 @@
+{
+  // コンパイラ（トランスパイラ）のオプションを指定
+  "compilerOptions": {
+    // どのバージョンのJavaScriptで出力するかを指定
+    "target": "ES2018", 
+    // どのJavaScriptモジュール形式にコンパイルするかを指定
+    // Node.jsでの利用想定ならばcommonjsを指定する
+    "module": "commonjs", 
+    // ソースマップを生成するかどうか
+    "sourceMap": true, 
+    // コンパイル結果の出力先ディレクトリ
+    "outDir": "dist", 
+    // ソースファイルのルートディレクトリ
+    "rootDir": "src", 
+    // 厳密な型チェックを有効にするかどうか
+    "strict": true, 
+    // ECMAScript モジュールと CommonJS モジュールの相互運用性を有効にするかどうか
+    "esModuleInterop": true 
+  },
+  // コンパイル対象とするファイルのパスを指定
+  "include": [ "src" ]
+}

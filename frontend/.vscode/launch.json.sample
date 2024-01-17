@@ -1,0 +1,25 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "node-terminal",
+			"name": "フロントエンド(Next.jsサーバ)起動",
+			"command": "npm run dev",
+			"request": "launch"
+		},
+		{
+		"type": "msedge",
+		"request": "launch",
+		"name": "フロントエンド(Edge)起動",
+		"url": "http://localhost:3000",
+		"webRoot": "${workspaceFolder}"
+		},
+		{
+			"type": "chrome",
+			"request": "launch",
+			"name": "フロントエンド(Chrome)起動",
+			"url": "http://localhost:3000",
+			"webRoot": "${workspaceFolder}"
+		}
+	]
+}

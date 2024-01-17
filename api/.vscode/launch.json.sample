@@ -1,0 +1,19 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "APIにアタッチ",
+			"type": "node",
+			"request": "attach",
+			"processId": "${command:PickProcess}",
+			"restart": true
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "APIの起動",
+			"program": "${workspaceFolder}/dist/server.js",
+			"preLaunchTask": "npm: build"
+		}
+	]
+}

@@ -1,0 +1,125 @@
+openapi: 3.0.0
+info:
+  title: Todo API 
+  description: OpenApi specification for a Todo API
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+components:
+  schemas:
+    Todo:
+      allOf:
+      - $ref: '#/components/schemas/NewTodo'
+      - type: object
+        required:
+          - id
+        properties:
+          id:
+            description: id of the todo
+            type: string
+            readOnly: true
+    NewTodo:
+      type: object
+      required:
+        - task
+      properties:
+        task:
+          description: todo task
+          type: string
+        completed:
+          description: indicates if a task is completed or not
+          type: boolean
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+      required:
+        - code
+        - message
+paths:
+  /todos:
+    post:
+      summary: Add Todo
+      operationId: createTodo
+      requestBody:
+        description: Create a new todo 
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTodo'
+            example:
+              task: 'My sample task'
+      responses:
+        '201': 
+          description: The created todo
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todo'
+              example: |-
+                {
+                  "id": "abcdefgh-ijkl-1234-5678-mnopqlstuvwx",
+                  "task": "My sample task",
+                  "completed": false
+                }
+    get:
+      summary: Get Todos
+      operationId: getTodoList
+      responses:
+        '200':
+          description: List of all todos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Todo'
+  /todos/{todoId}:
+    parameters:
+    - name: todoId
+      in: path
+      description: The id of the todo
+      schema:
+        type: string
+      required: true
+      example: abcdefgh-ijkl-1234-5678-mnopqlstuvwx
+    put:
+      summary:  Update Todo
+      operationId: updateTodo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTodo'
+            example:
+              task: 'My sample task'
+              completed: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todo'
+              example: |-
+                {
+                  "id": "abcdefgh-ijkl-1234-5678-mnopqlstuvwx",
+                  "task": "My sample task",
+                  "completed": true
+                }
+        '404':
+          description: Todo Not Found
+    delete:
+      summary: Delete Todo
+      operationId: deleteTodo
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Todo Not Found
