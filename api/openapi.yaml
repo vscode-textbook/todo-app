@@ -29,17 +29,6 @@ components:
         completed:
           description: indicates if a task is completed or not
           type: boolean
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-      required:
-        - code
-        - message
 paths:
   /todos:
     post:

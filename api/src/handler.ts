@@ -32,7 +32,7 @@ export class TodoHandler {
   public UpdateTodo = (req: Request, res: Response) => {
     const todo = this.todos.find((t) => t.id === req.params.id);
     if (!todo) {
-      return res.status(404).json({ message: 'Todo Not found', code: 404 });
+      return res.status(404).send();
     }
     todo.task = req.body.task!; // non-null assertion operator: must be not null or undefined
     todo.completed = req.body.completed !== undefined ? req.body.completed : todo.completed;
@@ -42,7 +42,7 @@ export class TodoHandler {
   public DeleteTodo = (req: Request, res: Response) => {
     const index = this.todos.findIndex((t) => t.id === req.params.id);
     if (index === -1) {
-      return res.status(404).json({ message: 'Todo Not found', code: 404 });
+      return res.status(404).send();
     }
     this.todos.splice(index, 1);
     res.status(204).send();
