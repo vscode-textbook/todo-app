@@ -14,12 +14,16 @@
 		"url": "http://localhost:3000",
 		"webRoot": "${workspaceFolder}"
 		},
-		{
-			"type": "chrome",
-			"request": "launch",
-			"name": "フロントエンド(Chrome)起動",
-			"url": "http://localhost:3000",
-			"webRoot": "${workspaceFolder}"
-		}
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "フロントエンド(Chrome)起動",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}",
+      "resolveSourceMapLocations": [
+        "${workspaceFolder}/**",
+        "!**/node_modules/**"
+      ]
+    }
 	]
 }
